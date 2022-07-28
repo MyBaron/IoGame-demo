@@ -1,0 +1,130 @@
+2022-07-28 18:46:33.693 ERROR [main] o.s.boot.diagnostics.LoggingFailureAnalysisReporter.report:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2022-07-28 20:29:16.748 ERROR [Bolt-default-executor-7-thread-19] c.i.g.b.b.s.processor.ChangeUserIdMessageBrokerProcessor.handleRequest:66 - Server exception! Please check the server log, the address is 192.168.18.59:57781, id=634, ServerErrorMsg:null
+com.alipay.remoting.rpc.exception.InvokeServerException: Server exception! Please check the server log, the address is 192.168.18.59:57781, id=634, ServerErrorMsg:null
+	at com.alipay.remoting.rpc.RpcResponseResolver.preProcess(RpcResponseResolver.java:123)
+	at com.alipay.remoting.rpc.RpcResponseResolver.resolveResponseObject(RpcResponseResolver.java:54)
+	at com.alipay.remoting.rpc.RpcRemoting.invokeSync(RpcRemoting.java:186)
+	at com.alipay.remoting.rpc.RpcServerRemoting.invokeSync(RpcServerRemoting.java:67)
+	at com.alipay.remoting.rpc.RpcRemoting.invokeSync(RpcRemoting.java:143)
+	at com.alipay.remoting.rpc.RpcServer.invokeSync(RpcServer.java:638)
+	at com.iohao.game.bolt.broker.server.balanced.region.BrokerClientProxy.invokeSync(BrokerClientProxy.java:102)
+	at com.iohao.game.bolt.broker.server.processor.ChangeUserIdMessageBrokerProcessor.handleRequest(ChangeUserIdMessageBrokerProcessor.java:63)
+	at com.iohao.game.bolt.broker.server.processor.ChangeUserIdMessageBrokerProcessor.handleRequest(ChangeUserIdMessageBrokerProcessor.java:42)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.dispatchToUserProcessor(RpcRequestProcessor.java:235)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.doProcess(RpcRequestProcessor.java:146)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor$ProcessTask.run(RpcRequestProcessor.java:393)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: com.alipay.remoting.rpc.exception.RpcServerException: [Server]OriginErrorMsg: java.lang.RuntimeException: userSession 不存在. AdditionalErrorMsg: AYSNC process rpc request failed in RpcRequestProcessor, id=634
+	at com.iohao.game.bolt.broker.client.external.session.UserSessions.getUserSession(UserSessions.java:127)
+	at com.iohao.game.bolt.broker.client.external.session.UserSessions.settingUserId(UserSessions.java:164)
+	at com.iohao.game.bolt.broker.client.external.processor.SettingUserIdMessageExternalProcessor.handleRequest(SettingUserIdMessageExternalProcessor.java:45)
+	at com.iohao.game.bolt.broker.client.external.processor.SettingUserIdMessageExternalProcessor.handleRequest(SettingUserIdMessageExternalProcessor.java:35)
+	... 6 common frames omitted
+2022-07-28 20:29:19.718 ERROR [Bolt-default-executor-7-thread-9] com.iohao.game.bolt.broker.client.kit.UserIdSettingKit.settingUserId:87 - Rpc invocation timeout[responseCommand TIMEOUT]! the address is 192.168.18.59:10200
+com.alipay.remoting.rpc.exception.InvokeTimeoutException: Rpc invocation timeout[responseCommand TIMEOUT]! the address is 192.168.18.59:10200
+	at com.alipay.remoting.rpc.RpcResponseResolver.preProcess(RpcResponseResolver.java:83)
+	at com.alipay.remoting.rpc.RpcResponseResolver.resolveResponseObject(RpcResponseResolver.java:54)
+	at com.alipay.remoting.rpc.RpcRemoting.invokeSync(RpcRemoting.java:186)
+	at com.alipay.remoting.rpc.RpcClient.invokeSync(RpcClient.java:253)
+	at com.iohao.game.bolt.broker.core.client.BrokerClientItem.invokeSync(BrokerClientItem.java:102)
+	at com.iohao.game.bolt.broker.core.client.BrokerClient.invokeSync(BrokerClient.java:149)
+	at com.iohao.game.bolt.broker.core.client.BrokerClient.invokeSync(BrokerClient.java:153)
+	at com.iohao.game.bolt.broker.client.kit.UserIdSettingKit.settingUserId(UserIdSettingKit.java:76)
+	at com.example.iogamedemo.action.CommonAction.here(CommonAction.java:33)
+	at com.example.iogamedemo.action.CommonActionMethodAccess.invoke(Unknown Source)
+	at com.iohao.game.action.skeleton.core.flow.interal.DefaultActionMethodInvoke.invoke(DefaultActionMethodInvoke.java:44)
+	at com.iohao.game.action.skeleton.core.DefaultActionCommandFlowExecute.execute(DefaultActionCommandFlowExecute.java:65)
+	at com.iohao.game.action.skeleton.core.ActionCommandHandler.handler(ActionCommandHandler.java:41)
+	at com.iohao.game.action.skeleton.core.BarSkeleton.handle(BarSkeleton.java:113)
+	at com.iohao.game.bolt.broker.client.processor.RequestMessageClientProcessor.handleRequest(RequestMessageClientProcessor.java:75)
+	at com.iohao.game.bolt.broker.client.processor.RequestMessageClientProcessor.handleRequest(RequestMessageClientProcessor.java:42)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.dispatchToUserProcessor(RpcRequestProcessor.java:235)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.doProcess(RpcRequestProcessor.java:146)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor$ProcessTask.run(RpcRequestProcessor.java:393)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-07-28 20:29:19.720 ERROR [Bolt-default-executor-7-thread-20] c.i.g.b.b.c.e.processor.ResponseMessageExternalProcessor.handleRequest:73 - userSession 不存在，请先登录在使用此方法
+java.lang.RuntimeException: userSession 不存在，请先登录在使用此方法
+	at com.iohao.game.bolt.broker.client.external.session.UserSessions.getUserSession(UserSessions.java:116)
+	at com.iohao.game.bolt.broker.client.external.processor.ResponseMessageExternalProcessor.handleRequest(ResponseMessageExternalProcessor.java:65)
+	at com.iohao.game.bolt.broker.client.external.processor.ResponseMessageExternalProcessor.handleRequest(ResponseMessageExternalProcessor.java:47)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.dispatchToUserProcessor(RpcRequestProcessor.java:235)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.doProcess(RpcRequestProcessor.java:146)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor$ProcessTask.run(RpcRequestProcessor.java:393)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-07-28 20:30:04.164 ERROR [Bolt-default-executor-7-thread-17] c.i.g.b.b.s.processor.ChangeUserIdMessageBrokerProcessor.handleRequest:66 - Server exception! Please check the server log, the address is 192.168.18.59:57781, id=658, ServerErrorMsg:null
+com.alipay.remoting.rpc.exception.InvokeServerException: Server exception! Please check the server log, the address is 192.168.18.59:57781, id=658, ServerErrorMsg:null
+	at com.alipay.remoting.rpc.RpcResponseResolver.preProcess(RpcResponseResolver.java:123)
+	at com.alipay.remoting.rpc.RpcResponseResolver.resolveResponseObject(RpcResponseResolver.java:54)
+	at com.alipay.remoting.rpc.RpcRemoting.invokeSync(RpcRemoting.java:186)
+	at com.alipay.remoting.rpc.RpcServerRemoting.invokeSync(RpcServerRemoting.java:67)
+	at com.alipay.remoting.rpc.RpcRemoting.invokeSync(RpcRemoting.java:143)
+	at com.alipay.remoting.rpc.RpcServer.invokeSync(RpcServer.java:638)
+	at com.iohao.game.bolt.broker.server.balanced.region.BrokerClientProxy.invokeSync(BrokerClientProxy.java:102)
+	at com.iohao.game.bolt.broker.server.processor.ChangeUserIdMessageBrokerProcessor.handleRequest(ChangeUserIdMessageBrokerProcessor.java:63)
+	at com.iohao.game.bolt.broker.server.processor.ChangeUserIdMessageBrokerProcessor.handleRequest(ChangeUserIdMessageBrokerProcessor.java:42)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.dispatchToUserProcessor(RpcRequestProcessor.java:235)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.doProcess(RpcRequestProcessor.java:146)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor$ProcessTask.run(RpcRequestProcessor.java:393)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: com.alipay.remoting.rpc.exception.RpcServerException: [Server]OriginErrorMsg: java.lang.RuntimeException: userSession 不存在. AdditionalErrorMsg: AYSNC process rpc request failed in RpcRequestProcessor, id=658
+	at com.iohao.game.bolt.broker.client.external.session.UserSessions.getUserSession(UserSessions.java:127)
+	at com.iohao.game.bolt.broker.client.external.session.UserSessions.settingUserId(UserSessions.java:164)
+	at com.iohao.game.bolt.broker.client.external.processor.SettingUserIdMessageExternalProcessor.handleRequest(SettingUserIdMessageExternalProcessor.java:45)
+	at com.iohao.game.bolt.broker.client.external.processor.SettingUserIdMessageExternalProcessor.handleRequest(SettingUserIdMessageExternalProcessor.java:35)
+	... 6 common frames omitted
+2022-07-28 20:30:07.162 ERROR [Bolt-default-executor-7-thread-20] com.iohao.game.bolt.broker.client.kit.UserIdSettingKit.settingUserId:87 - Rpc invocation timeout[responseCommand TIMEOUT]! the address is 192.168.18.59:10200
+com.alipay.remoting.rpc.exception.InvokeTimeoutException: Rpc invocation timeout[responseCommand TIMEOUT]! the address is 192.168.18.59:10200
+	at com.alipay.remoting.rpc.RpcResponseResolver.preProcess(RpcResponseResolver.java:83)
+	at com.alipay.remoting.rpc.RpcResponseResolver.resolveResponseObject(RpcResponseResolver.java:54)
+	at com.alipay.remoting.rpc.RpcRemoting.invokeSync(RpcRemoting.java:186)
+	at com.alipay.remoting.rpc.RpcClient.invokeSync(RpcClient.java:253)
+	at com.iohao.game.bolt.broker.core.client.BrokerClientItem.invokeSync(BrokerClientItem.java:102)
+	at com.iohao.game.bolt.broker.core.client.BrokerClient.invokeSync(BrokerClient.java:149)
+	at com.iohao.game.bolt.broker.core.client.BrokerClient.invokeSync(BrokerClient.java:153)
+	at com.iohao.game.bolt.broker.client.kit.UserIdSettingKit.settingUserId(UserIdSettingKit.java:76)
+	at com.example.iogamedemo.action.CommonAction.here(CommonAction.java:33)
+	at com.example.iogamedemo.action.CommonActionMethodAccess.invoke(Unknown Source)
+	at com.iohao.game.action.skeleton.core.flow.interal.DefaultActionMethodInvoke.invoke(DefaultActionMethodInvoke.java:44)
+	at com.iohao.game.action.skeleton.core.DefaultActionCommandFlowExecute.execute(DefaultActionCommandFlowExecute.java:65)
+	at com.iohao.game.action.skeleton.core.ActionCommandHandler.handler(ActionCommandHandler.java:41)
+	at com.iohao.game.action.skeleton.core.BarSkeleton.handle(BarSkeleton.java:113)
+	at com.iohao.game.bolt.broker.client.processor.RequestMessageClientProcessor.handleRequest(RequestMessageClientProcessor.java:75)
+	at com.iohao.game.bolt.broker.client.processor.RequestMessageClientProcessor.handleRequest(RequestMessageClientProcessor.java:42)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.dispatchToUserProcessor(RpcRequestProcessor.java:235)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.doProcess(RpcRequestProcessor.java:146)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor$ProcessTask.run(RpcRequestProcessor.java:393)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-07-28 20:30:07.164 ERROR [Bolt-default-executor-7-thread-2] c.i.g.b.b.c.e.processor.ResponseMessageExternalProcessor.handleRequest:73 - userSession 不存在，请先登录在使用此方法
+java.lang.RuntimeException: userSession 不存在，请先登录在使用此方法
+	at com.iohao.game.bolt.broker.client.external.session.UserSessions.getUserSession(UserSessions.java:116)
+	at com.iohao.game.bolt.broker.client.external.processor.ResponseMessageExternalProcessor.handleRequest(ResponseMessageExternalProcessor.java:65)
+	at com.iohao.game.bolt.broker.client.external.processor.ResponseMessageExternalProcessor.handleRequest(ResponseMessageExternalProcessor.java:47)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.dispatchToUserProcessor(RpcRequestProcessor.java:235)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor.doProcess(RpcRequestProcessor.java:146)
+	at com.alipay.remoting.rpc.protocol.RpcRequestProcessor$ProcessTask.run(RpcRequestProcessor.java:393)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
